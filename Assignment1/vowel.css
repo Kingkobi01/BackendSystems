@@ -1,0 +1,78 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Ubuntu Mono';
+	font-size: 1.2rem;
+}
+
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 100vw;
+	min-height: 100vh;
+	background: #0f0f4d33;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+	justify-content: center;
+	align-items: center;
+	max-width: 100vw;
+	min-height: 100vh;
+}
+
+h2 {
+	font-size: 1.75rem;
+}
+
+form {
+	background: #1d1d61;
+	min-width: 50vw;
+	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	padding: 3em;
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+}
+
+.statement {
+	align-self: center;
+	width: 100%;
+	color: rgb(13, 158, 158);
+}
+
+input[type=text] {
+	height: 3em;
+	width: 70%;
+	border-radius: 9px;
+	border: none;
+	outline: none;
+	padding: 1em;
+}
+
+input[type=submit] {
+	padding-block: 1em;
+	width: 10em;
+	align-self: center;
+	outline: none;
+	border: none;
+	border-radius: 7px;
+	transition: all 300ms linear;
+}
+
+input[type=submit]:hover {
+	background: saddlebrown;
+	color: #0f0f4d;
+	border: 1px solid salmon;
+}
+
+
+.answer {
+	font-family: 'Roboto Mono';
+}
