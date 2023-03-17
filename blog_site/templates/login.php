@@ -25,7 +25,7 @@ session_start();
 
 				</div>
 				<div class="input-field">
-					<input type="submit" class="btn blue darken-4" value="LOGIN" name="login" required="">
+					<input type="submit" class="btn blue darken-4" value="LOGIN" name="login">
 				</div>
 				<p>Click
 					<a href="./register.php">here</a> if you don't have an account

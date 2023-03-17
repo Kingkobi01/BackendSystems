@@ -25,44 +25,59 @@ if ($result) {
 		}
 	}
 }
-
-session_start();
-$_SESSION['hasLoggedIn'] = false;
 ?>
 
 <div class="container section center">
-	<h3>Comments</h3>
+	<h3 class="scrollspy" id="comments">Comments</h3>
 	<div class="row">
-		<?php
-		foreach ($comments as $comm) { ?>
+		<?php foreach ($comments as $comm) {
+
+			$usernameAndComment = getUsernameAndComment($comm, $connection);
+		?>
 			<div class="col s12 m5 offset-m1">
 				<div class="card comment hoverable">
-					<p class="card-title">
-						<?= getUsernameAndComment($comm, $connection)['username']; ?>
-					</p>
+					<p class="card-title"><?= $usernameAndComment['username']; ?></p>
 					<div class="card-description">
-						<p>
-							<?= getUsernameAndComment($comm, $connection)['message']; ?>
-
-						</p>
+						<p><?= $usernameAndComment['message']; ?></p>
 					</div>
 					<div class="card-action">
-						<a href="" class="btn btn-floating <?php echo $user_id == getUsernameAndComment($comm, $connection)['id'] ? "" : "disabled"; ?>
-						 cyan">
-
-							<i class="material-icons ">edit</i>
+						<a href="#edit?id=<?= $comm['comment_id'] ?>" class="waves-effect waves-light modal-trigger btn btn-floating <?= $user_id == $usernameAndComment['id'] ? "" : "disabled"; ?> cyan">
+							<i class="material-icons">edit</i>
 						</a>
-						<a href="" class="btn btn-floating <?php echo $user_id == getUsernameAndComment($comm, $connection)['id'] ? "" : "disabled"; ?> cyan">
-
+						<div id="edit?id=<?= $comm['comment_id'] ?>" class="modal">
+							<div class="modal-content">
+								<h5>Edit Comment</h5>
+								<div class="container">
+									<form action="./templates/editComment.php" method="post">
+										<div class="input-field">
+											<textarea name="message" id="message" class="materialize-textarea"><?= $comm['message']; ?></textarea>
+											<label for="message">Message</label>
+										</div>
+										<input type="hidden" name="id" value="<?= $comm['comment_id'] ?>">
+										<div class="input-field">
+											<input type="submit" class="btn blue darken-4" value="UPDATE" name="update">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<a href="#delete?id=<?= $comm['comment_id'] ?>" class="waves-effect waves-light modal-trigger btn btn-floating <?= $user_id == $usernameAndComment['id'] ? "" : "disabled"; ?> cyan">
 							<i class="material-icons red-text">delete</i>
 						</a>
+						<div id="delete?id=<?= $comm['comment_id'] ?>" class="modal">
+							<div class="modal-content">
+								<h5>Delete Comment</h5>
+								<p>Are you sure you want to delete <?= substr($usernameAndComment['message'], 0, 17); ?>...</p>
+							</div>
+							<div class="modal-footer">
+								<a href="./templates/deleteComment.php?id=<?= $comm['comment_id'] ?>" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons green-text" style="font-size: 2.5em;">check</i></a>
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons red-text" style="font-size: 2.5em;">close</i></a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
-		<?php
-		}
-		?>
+		<?php } ?>
 	</div>
 	<div class="row">
 		<div class="col s12 m10 l8 center scrollspy" id="comment">
@@ -115,10 +130,10 @@ $_SESSION['hasLoggedIn'] = false;
 			<div class="col s12 l4 offset-l2">
 				<h2>Connect</h2>
 				<ul>
-					<li style="padding-block: .275em;"><a class="grey-text text-lighten-3 hoverable" href="">Twitter</a></li>
-					<li style="padding-block: .275em;"><a class="grey-text text-lighten-3 hoverable" href="">Facebook</a></li>
-					<li style="padding-block: .275em;"><a class="grey-text text-lighten-3 hoverable" href="">LinkedIn</a></li>
-					<li style="padding-block: .275em;"><a class="grey-text text-lighten-3 hoverable" href="">Github</a></li>
+					<li style="padding-block: .275em;"><a class="btn-floating hoverable" href=""><i class="fab fa-twitter"></i></a></li>
+					<li style="padding-block: .275em;"><a class="btn-floating hoverable" href=""><i class="fab fa-facebook"></i></a></li>
+					<li style="padding-block: .275em;"><a class="btn-floating hoverable" href=""><i class="fab fa-linkedin"></i></a></li>
+					<li style="padding-block: .275em;"><a class="btn-floating hoverable" href=""><i class="fab fa-github"></i></a></li>
 				</ul>
 			</div>
 		</div>

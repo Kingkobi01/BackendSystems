@@ -58,6 +58,10 @@ cite {
 	min-height: 100vh;
 }
 
+.modal-content>p {
+	font-size: 1.5rem;
+}
+
 @media screen and (max-width:640px) {
 	header {
 		max-height: 500px;

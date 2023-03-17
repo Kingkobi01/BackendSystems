@@ -15,6 +15,7 @@
 		$('.sidenav').sidenav();
 		$('.parallax').parallax();
 		$('.scrollspy').scrollSpy();
+		$('.modal').modal();
 
 	})
 </script>
