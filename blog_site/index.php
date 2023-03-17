@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('./templates/header.php');
 
 ?>
@@ -14,13 +15,14 @@ include('./templates/header.php');
 				<li><a href="#blog">BLOG</a></li>
 				<li><a href="#comment">COMMENTS</a></li>
 				<li><a href="#contact">CONTACT</a></li>
-
+				<li><a href="./templates/logout.php">Logout</a></li>
 			</ul>
 
 			<ul class="sidenav grey lighten-2" id="mobile-menu">
 				<li><a href="#blog">Blog</a></li>
 				<li><a href="#comment">Comment</a></li>
 				<li><a href="#contact">Contact</a></li>
+				<li><a href="./templates/logout.php">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -30,7 +32,7 @@ include('./templates/header.php');
 </header>
 
 <body class="indigo lighten-5">
-
+	<? print_r($_SESSION) ?>
 	<div class="container section scrollspy" id="blog">
 		<p><span class="blue-text text-darken-2">S</span>o, you're ready to become a Web3 developer and say goodbye to your social life? Great! Here's a helpful guide that will make sure you're on the fast track to becoming the ultimate programming machine.</p>
 		<p>First things first, let's dive into the basics of blockchain technology <i>(because who doesn't want to spend hours reading about complex concepts?)</i>. Once you've got that down, it's time to choose a blockchain platform to work with. Don't waste too much time on this step, because they're all basically the same. <i>Yawn</i>.</p>

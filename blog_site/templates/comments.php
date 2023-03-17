@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$user_id = $_SESSION['id'];
 include('./config/dbconnect.php');
 $query = "SELECT * from `comments`";
 $result = mysqli_query($connection, $query);
@@ -21,7 +21,7 @@ if ($result) {
 		if ($user_result) {
 			$username = mysqli_fetch_all($user_result, MYSQLI_ASSOC);
 			$username = $username[0]['username'];
-			return ['username' => $username, 'message' => $message];
+			return ['username' => $username, 'message' => $message, 'id' => $id];
 		}
 	}
 }
@@ -47,11 +47,12 @@ $_SESSION['hasLoggedIn'] = false;
 						</p>
 					</div>
 					<div class="card-action">
-						<a href="" class="btn btn-floating cyan">
+						<a href="" class="btn btn-floating <?php echo $user_id == getUsernameAndComment($comm, $connection)['id'] ? "" : "disabled"; ?>
+						 cyan">
 
 							<i class="material-icons ">edit</i>
 						</a>
-						<a href="" class="btn btn-floating cyan">
+						<a href="" class="btn btn-floating <?php echo $user_id == getUsernameAndComment($comm, $connection)['id'] ? "" : "disabled"; ?> cyan">
 
 							<i class="material-icons red-text">delete</i>
 						</a>
@@ -68,18 +69,22 @@ $_SESSION['hasLoggedIn'] = false;
 			<h4>Add a Comment</h4>
 			<form action="templates/addComment.php" method="post">
 				<div class="input-field">
-					<i class="material-icons prefix blue-text">email</i>
-					<input type="email" name="email" id="email">
-					<label for="email">Your email</label>
-				</div>
-				<div class="input-field">
 					<i class="material-icons prefix blue-text">message</i>
-					<textarea class="materialize-textarea" name="message" id="message"></textarea>
+					<textarea class="materialize-textarea" name="message" id="message" required></textarea>
 					<label for="message">Message</label>
 				</div>
-				<div class="input-field">
-					<input type="submit" name='submit' value="POST" class="btn-large blue darken-2 wave-effect wave-circle">
-				</div>
+				<?php
+				if (!(isset($_SESSION['id']))) { ?>
+
+					<a class="waves-effect waves-light blue darken-4 btn" href="./templates/login.php">Login</a>
+				<?php
+				} else {
+				?><div class="input-field">
+						<input type="submit" name='submit' value="POST" class="btn-large blue darken-2 wave-effect wave-circle">
+					</div>
+
+
+				<?php } ?>
 			</form>
 		</div>
 	</div>

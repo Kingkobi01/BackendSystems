@@ -1,36 +1,28 @@
 <?php
 session_start();
+include('../config/dbconnect.php');
 
 include('./header.php');
 if (isset($_POST['register'])) {
-	if (isset($_POST['username']) && isset($_POST['password'])) {
 
-		include('./config/dbconnect.php');
+	$username = mysqli_real_escape_string($connection, $_POST['username']);
+	$email = mysqli_real_escape_string($connection, $_POST['email']);
+	$password = mysqli_real_escape_string($connection, $_POST['password']);
 
-		$username = mysqli_real_escape_string($connection, $_POST['username']);
-		$email = mysqli_real_escape_string($connection, $_POST['email']);
-		$password = mysqli_real_escape_string($connection, $_POST['password']);
-
-		$adding_user_query = "INSERT INTO users (`username`, `email`, `password`)  VALUES ('$username', '$email', '$password')";
+	$adding_user_query = "INSERT INTO users (`username`, `email`, `password`)  VALUES ('$username', '$email', '$password')";
 
 
-		if (mysqli_query($connection, $adding_user_query)) {
-			echo ("User added");
-			$res = mysqli_query($connection, "SELECT * FROM users WHERE `password` = '$password'");
-			$row = mysqli_fetch_assoc($res);
+	if (mysqli_query($connection, $adding_user_query)) {
+		echo ("<h1>User added</h1>");
+		$res = mysqli_query($connection, "SELECT * FROM users WHERE `password` = '$password'");
+		$row = mysqli_fetch_assoc($res);
 
-			$id = $row['id'];
+		$id = $row['id'];
 
-			$_SESSION['id'] = $id;
-		}
-	} else { ?>
-		<script type="text/javascript">
-			alert("Username or Password field empty")
-		</script>
-<?php
+		$_SESSION['id'] = $id;
 	}
 }
-if (isset($_SESSION['id'])) {
+if ($_SESSION['id'] == $id) {
 	header('Location:../index.php');
 }
 
@@ -40,7 +32,7 @@ if (isset($_SESSION['id'])) {
 	<h2>Create a new account</h2>
 	<div class="row">
 		<div class="col s12 m9 l8 z-depth-2 valign-wrapper center" style="width: 50vw; height: 40vh; padding:1em">
-			<form action="register.php" method="post" style="width: 100%;">
+			<form action="./register.php" method="post" style="width: 100%;">
 				<div class="input-field">
 					<i class="material-icons prefix">person</i>
 					<input type="text" name="username" id="username" required="Please Enter username">
