@@ -22,7 +22,14 @@ include('./templates/header.php');
 				<li><a href="#blog">Blog</a></li>
 				<li><a href="#comment">Comment</a></li>
 				<li><a href="#contact">Contact</a></li>
-				<li><a href="./templates/logout.php">Logout</a></li>
+				<?php if (isset($_SESSION['id'])) { ?>
+
+					<li><a href="./templates/logout.php">Logout</a></li>
+				<?php } else { ?>
+					<li><a href="./templates/login.php">Login</a></li>
+
+				<?php }
+				?>
 			</ul>
 		</div>
 	</nav>
