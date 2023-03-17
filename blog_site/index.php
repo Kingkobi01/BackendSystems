@@ -1,10 +1,37 @@
 <?php
 include('./templates/header.php');
+
 ?>
+
+<header>
+	<nav class="nav-wrapper transparent z-depth-0 align-center">
+		<div class="container ">
+			<a href="#" class="brand-logo logo grey-text text-lighten-2">Web3 Technology</a>
+			<a href="#" class="sidenav-trigger" data-target="mobile-menu">
+				<i class=" material-icons">menu</i>
+			</a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="#blog">BLOG</a></li>
+				<li><a href="#comment">COMMENTS</a></li>
+				<li><a href="#contact">CONTACT</a></li>
+
+			</ul>
+
+			<ul class="sidenav grey lighten-2" id="mobile-menu">
+				<li><a href="#blog">Blog</a></li>
+				<li><a href="#comment">Comment</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<h1 class="title align-right indigo-text text-lighten-5">How to Become a Web3 Developer and "Sacrifice Your Social Life"</h1>
+	</div>
+</header>
 
 <body class="indigo lighten-5">
 
-	<div class="container section">
+	<div class="container section scrollspy" id="blog">
 		<p><span class="blue-text text-darken-2">S</span>o, you're ready to become a Web3 developer and say goodbye to your social life? Great! Here's a helpful guide that will make sure you're on the fast track to becoming the ultimate programming machine.</p>
 		<p>First things first, let's dive into the basics of blockchain technology <i>(because who doesn't want to spend hours reading about complex concepts?)</i>. Once you've got that down, it's time to choose a blockchain platform to work with. Don't waste too much time on this step, because they're all basically the same. <i>Yawn</i>.</p>
 
@@ -16,6 +43,12 @@ include('./templates/header.php');
 		<blockquote class="indigo lighten-4">"Web3 technology is the perfect blend of complex coding and relentless optimism. Who needs a social life when you have the blockchain?" <cite>No one Ever</cite> </blockquote>
 
 	</div>
+	<div class="parallax-container">
+		<div class="parallax">
+			<img src="img/stars.jpg" alt="">
+		</div>
+	</div>
+
 	<?php
 	include('./templates/comments.php');
 	include('./templates/footer.php');

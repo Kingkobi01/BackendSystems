@@ -46,6 +46,16 @@ cite {
 
 .comment {
 	border-radius: 9px;
+	padding-block: .5em;
+}
+
+.container.login.center {
+	display: flex;
+	place-items: center;
+}
+
+.login {
+	min-height: 100vh;
 }
 
 @media screen and (max-width:640px) {
